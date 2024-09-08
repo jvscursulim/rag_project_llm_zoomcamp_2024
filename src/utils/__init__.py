@@ -4,7 +4,7 @@ import streamlit as st
 from typing import Any, Optional
 from .model_settings import SAFETY_SETTINGS, GENERATION_CONFIG
 from .evaluation_tools import calculate_hit_rate, calculate_mrr
-from .rag import process_user_input, search
+from .rag import process_user_input, search, create_context_prompt
 
 
 def configure_model(
