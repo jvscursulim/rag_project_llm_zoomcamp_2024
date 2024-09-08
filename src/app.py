@@ -68,7 +68,7 @@ if model:
                 role = "ai"
             with st.chat_message(role):
                 st.markdown(message["parts"][0])
-            
+
         if query or text_from_voice:
             if query:
                 process_user_input(
@@ -78,7 +78,7 @@ if model:
                     query=query,
                     n_results=n_results,
                     boosting=boosting,
-                    judge_llm=judge_llm
+                    judge_llm=judge_llm,
                 )
             elif text_from_voice:
                 process_user_input(
@@ -88,5 +88,5 @@ if model:
                     query=text_from_voice,
                     n_results=n_results,
                     boosting=boosting,
-                    judge_llm=judge_llm
+                    judge_llm=judge_llm,
                 )

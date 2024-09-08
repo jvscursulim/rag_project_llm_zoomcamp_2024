@@ -12,10 +12,7 @@ with open(file="../dataset/gamedev_faq_database.json", mode="r") as f:
     documents = json.load(f)
 
 index_settings = {
-    "settings": {
-        "number_of_shards": 1,
-        "number_of_replicas": 0
-    },
+    "settings": {"number_of_shards": 1, "number_of_replicas": 0},
     "mappings": {
         "properties": {
             "id": {"type": "keyword"},
@@ -23,7 +20,7 @@ index_settings = {
             "question": {"type": "text"},
             "answer": {"type": "text"},
         }
-    }
+    },
 }
 
 index_name = "gamedev-faq"

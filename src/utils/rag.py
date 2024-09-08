@@ -7,7 +7,11 @@ from elasticsearch import Elasticsearch
 
 
 def search(
-    query: str, es_client: Elasticsearch, index_name: str, n_results: int, boosting: tuple
+    query: str,
+    es_client: Elasticsearch,
+    index_name: str,
+    n_results: int,
+    boosting: tuple,
 ) -> list:
     """Search for results that are similar to the query given by the user.
 
@@ -38,7 +42,7 @@ def search(
     }
 
     response = es_client.search(index=index_name, body=search_query)
-    search_results = [hit for hit in response['hits']['hits']]
+    search_results = [hit for hit in response["hits"]["hits"]]
 
     return search_results
 
@@ -70,7 +74,10 @@ def create_context_prompt(query: str, search_results: list) -> str:
     context = ""
 
     for doc in search_results:
-        context = context + f"question: {doc['_source']['question']}\nanswer: {doc['_source']['answer']}\n\n"
+        context = (
+            context
+            + f"question: {doc['_source']['question']}\nanswer: {doc['_source']['answer']}\n\n"
+        )
 
     prompt = prompt_template.format(question=query, context=context).strip()
 
@@ -131,7 +138,13 @@ def response_generator(chat_session: genai.ChatSession, message: dict):
 
 
 def process_user_input(
-    chat_session, es_client: Elasticsearch, index_name: str, query: str, n_results: int, boosting: int, judge_llm: bool
+    chat_session,
+    es_client: Elasticsearch,
+    index_name: str,
+    query: str,
+    n_results: int,
+    boosting: int,
+    judge_llm: bool,
 ) -> None:
     """Processes user input
 
@@ -151,7 +164,11 @@ def process_user_input(
         st.markdown(query)
 
     search_results = search(
-        query=query, es_client=es_client, index_name=index_name, n_results=n_results, boosting=boosting
+        query=query,
+        es_client=es_client,
+        index_name=index_name,
+        n_results=n_results,
+        boosting=boosting,
     )
     context_prompt = create_context_prompt(query=query, search_results=search_results)
 
@@ -167,7 +184,9 @@ def process_user_input(
     st.session_state.messages.append({"role": "model", "parts": [response]})
 
     if judge_llm:
-        rag_evaluation_prompt = create_rag_evaluation_prompt(query=query, llm_answer=response)
+        rag_evaluation_prompt = create_rag_evaluation_prompt(
+            query=query, llm_answer=response
+        )
         # Display assistant response in chat message container
         with st.chat_message("model", avatar="👨‍⚖️"):
             response = st.write_stream(

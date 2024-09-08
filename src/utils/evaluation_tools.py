@@ -17,6 +17,7 @@ def calculate_hit_rate(relevance_total: list) -> float:
 
     return cnt / len(relevance_total)
 
+
 def calculate_mrr(relevance_total: list) -> float:
     """Calculates the mrr retrieval metric.
 
