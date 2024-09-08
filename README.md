@@ -28,6 +28,8 @@ This repository contains the code for a Streamlit-based application that acts as
 
 ## How to install
 
+* Python version: 3.12
+
 * Step 1: Clone this repository
 ```bash
 git clone
