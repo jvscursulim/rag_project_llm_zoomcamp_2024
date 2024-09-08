@@ -110,7 +110,19 @@ cd rag_project_llm_zoomcamp_2024/src
 python generate_ground_truth.py
 ```
 
-* Step 3: Run the `retrieval_evaluation.py` python script through the terminal to see retrieval metrics (Hit-rate and MRR)
+* Step 3: Intialize docker and open a new terminal and execute the command below to start `elasticsearch`.
+```bash
+docker run -it \
+    --rm \
+    --name elasticsearch \
+    -p 9200:9200 \
+    -p 9300:9300 \
+    -e "discovery.type=single-node" \
+    -e "xpack.security.enabled=false" \
+    elasticsearch:8.4.3
+```
+
+* Step 4: Run the `retrieval_evaluation.py` python script through the terminal to see retrieval metrics (Hit-rate and MRR)
 ```bash
 python retrieval_evaluation.py
 ```
