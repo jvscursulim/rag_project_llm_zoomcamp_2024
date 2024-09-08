@@ -2,8 +2,9 @@ import google.generativeai as genai
 import streamlit as st
 
 from typing import Any, Optional
-from .constants import SAFETY_SETTINGS, GENERATION_CONFIG
-from .utils import process_user_input
+from .model_settings import SAFETY_SETTINGS, GENERATION_CONFIG
+from .evaluation_tools import calculate_hit_rate, calculate_mrr
+from .rag import process_user_input, search
 
 
 def configure_model(

@@ -96,6 +96,31 @@ streamlit run app.py
 
 * Step 5: Use the UI created with streamlit to execute your queries.
 
+## Evaluation
+
+### Retrieval
+
+* Step 1: Access the folder `src`
+```bash
+cd rag_project_llm_zoomcamp_2024/src
+```
+
+* Step 2: Open the file `generate_ground_truth.py`, insert your Gemini API key there and run the python script.
+```bash
+python generate_ground_truth.py
+```
+
+* Step 3: Run the `retrieval_evaluation.py` python script through the terminal to see retrieval metrics (Hit-rate and MRR)
+```bash
+python retrieval_evaluation.py
+```
+
+Observation: The free Gemini API Key only give us the possibility to generate 16 answers, so in the `ground_truth_retrieval.csv` file we only have 80 generated questions to use for retrieval evaluation.
+
+### RAG
+
+In order to perform a RAG evaluation, we implemented a LLM Judge and it is available on the UI. Then, if the user wants to see the relevance of the LLM answer, it will be necessary to run the streamlit application and enable the RAG evaluation.
+
 ## License
 
 This project is licensed under the Apache 2.0 license.
