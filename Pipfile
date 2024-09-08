@@ -10,6 +10,7 @@ elasticsearch = "*"
 scikit-learn = "*"
 google-generativeai = "*"
 streamlit-mic-recorder = "*"
+pandas = "*"
 
 [dev-packages]
 black = "*"

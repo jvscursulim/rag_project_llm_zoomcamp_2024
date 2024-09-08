@@ -1,5 +1,3 @@
-import json
-
 import streamlit as st
 
 from elasticsearch import Elasticsearch
@@ -52,9 +50,12 @@ if model:
                 kwargs={},
                 key=None,
             )
+            judge_llm = st.toggle(label="RAG evaluation", value=False)
         with col2:
             n_results = st.number_input(label="Search results:", min_value=1, step=1)
-            boosting = st.number_input(label="Boosting:", min_value=1, step=1)
+            boosting_question = st.number_input(label="Question boosting:", value=1)
+            boosting_answer = st.number_input(label="Answer boosting:", value=1)
+        boosting = (boosting_question, boosting_answer)
         st.divider()
         query = st.chat_input(placeholder="What is your question gamedev?")
 
@@ -65,7 +66,9 @@ if model:
                 role = "user"
             else:
                 role = "ai"
-
+            with st.chat_message(role):
+                st.markdown(message["parts"][0])
+            
         if query or text_from_voice:
             if query:
                 process_user_input(
@@ -74,7 +77,8 @@ if model:
                     index_name=index_name,
                     query=query,
                     n_results=n_results,
-                    boosting=boosting
+                    boosting=boosting,
+                    judge_llm=judge_llm
                 )
             elif text_from_voice:
                 process_user_input(
@@ -83,5 +87,6 @@ if model:
                     index_name=index_name,
                     query=text_from_voice,
                     n_results=n_results,
-                    boosting=boosting
+                    boosting=boosting,
+                    judge_llm=judge_llm
                 )
