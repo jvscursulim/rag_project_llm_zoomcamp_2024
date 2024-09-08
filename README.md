@@ -32,7 +32,7 @@ This repository contains the code for a Streamlit-based application that acts as
 
 * Step 1: Clone this repository
 ```bash
-git clone
+git clone https://github.com/jvscursulim/rag_project_llm_zoomcamp_2024
 ```
 
 * Step 2: Create and activate a virtual environment
@@ -58,7 +58,7 @@ pip install pipenv
 
 * Step 4: Install python libraries
 ```bash
-cd 
+cd rag_project_llm_zoomcamp_2024
 pipenv install
 ```
 
@@ -66,7 +66,7 @@ pipenv install
 
 Before to run the application, you need to do the data ingestion. So, in order to do that, you will need to run the python script called `data_ingestion.py`. This python script will ingest the data present on `dataset/gamedev_faq_database.json` into `elasticsearch` index.
 ```bash
-cd src
+cd rag_project_llm_zoomcamp_2024/src
 python data_ingestion.py
 ```
 
@@ -88,7 +88,7 @@ docker run -it \
 
 * Step 3: Open a new terminal tab, access the `src` folder and initialize the streamlit application.
 ```bash
-cd src
+cd rag_project_llm_zoomcamp_2024/src
 streamlit run app.py
 ```
 
