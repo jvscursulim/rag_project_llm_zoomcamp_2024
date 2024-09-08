@@ -24,7 +24,7 @@ This repository contains the code for a Streamlit-based application that acts as
 
 ## Dataset
 
-[Gamedev Chatbot: Domain-oriented intent dataset](https://www.kaggle.com/datasets/antonkozyriev/unity3d-faq)
+In this project we used to following dataset: [Gamedev Chatbot: Domain-oriented intent dataset](https://www.kaggle.com/datasets/antonkozyriev/unity3d-faq). This dataset is based on many questions and answers about Unity game engine. The original format of the dataset is JSONL, but here we converted it to JSON and this version is available on `dataset` folder. 
 
 ## How to install
 
