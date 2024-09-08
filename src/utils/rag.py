@@ -159,6 +159,7 @@ def process_user_input(
 
     # Add user message to chat history
     st.session_state.messages.append({"role": "user", "parts": [query]})
+    
     # Display user message in chat message container
     with st.chat_message("user"):
         st.markdown(query)
@@ -171,13 +172,14 @@ def process_user_input(
         boosting=boosting,
     )
     context_prompt = create_context_prompt(query=query, search_results=search_results)
+    message = {"role": "user", "parts": [context_prompt]}
 
     # Display assistant response in chat message container
     with st.chat_message("model", avatar="ai"):
         response = st.write_stream(
             response_generator(
                 chat_session=chat_session,
-                message=context_prompt,
+                message=message,
             )
         )
     # Add assistant response to chat history
@@ -187,12 +189,14 @@ def process_user_input(
         rag_evaluation_prompt = create_rag_evaluation_prompt(
             query=query, llm_answer=response
         )
+        message = {"role": "user", "parts": [rag_evaluation_prompt]}
+
         # Display assistant response in chat message container
         with st.chat_message("model", avatar="👨‍⚖️"):
             response = st.write_stream(
                 response_generator(
                     chat_session=chat_session,
-                    message=rag_evaluation_prompt,
+                    message=message,
                 )
             )
         # Add assistant response to chat history
